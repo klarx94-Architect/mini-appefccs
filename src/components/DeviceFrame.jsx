@@ -1,7 +1,11 @@
 import React from 'react';
 import styles from './DeviceFrame.module.css';
 
-const DeviceFrame = ({ children }) => {
+const DeviceFrame = ({ children, isMobileView }) => {
+  if (isMobileView) {
+    return <div className={styles.mobileEmbed}>{children}</div>;
+  }
+
   return (
     <div className={styles.deviceContainer}>
       <div className={styles.bezel}>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DeviceFrame from './components/DeviceFrame';
 import TopNav from './components/TopNav';
 import WhatsAppView from './components/WhatsAppView';
@@ -8,6 +8,16 @@ import './styles/globals.css';
 
 function App() {
   const [activeTab, setActiveTab] = useState('whatsapp');
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const renderContent = () => {
     switch (activeTab) {
@@ -25,8 +35,8 @@ function App() {
   };
 
   return (
-    <DeviceFrame>
-      <TopNav activeTab={activeTab} onTabChange={setActiveTab} />
+    <DeviceFrame isMobileView={isMobile}>
+      <TopNav activeTab={activeTab} onTabChange={setActiveTab} isMobile={isMobile} />
       {renderContent()}
     </DeviceFrame>
   );
