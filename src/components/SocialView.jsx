@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Heart, MessageCircle, Send, Bookmark, User, Grid, Play, Search, PlusSquare, Menu, Music2, Share2, MoreVertical, CheckCircle } from 'lucide-react';
+import { Heart, MessageCircle, Send, Bookmark, User, Grid, Play, Search, PlusSquare, Menu, Music2, Share2, MoreVertical, CheckCircle, ArrowLeft, Lock } from 'lucide-react';
 import styles from './SocialView.module.css';
 
 import logoImg from '../assets/logo_ef.png';
@@ -22,10 +22,9 @@ const SocialView = ({ type }) => {
     { id: 1, img: kitchenImg, user: 'electrofoxccs', likes: '85.4k', comments: '1.2k', caption: 'Transformando hogares con lo mejor de KitchenAid. 🏠💎 #Electrofox #Luxury #KitchenDesign', music: 'Sonido original - Electrofoxccs' },
     { id: 2, img: storefrontImg, user: 'electrofoxccs', likes: '42.1k', comments: '850', caption: '¡Nueva sede en Las Mercedes! Te esperamos con la mejor tecnología. 📍🦊 #Caracas #Ventas', music: 'Electrofox Vibes - Official' },
     { id: 3, img: fridgeImg, user: 'electrofoxccs', likes: '120k', comments: '3.4k', caption: 'El frío perfecto tiene nombre: Samsung French Door EF. ❄️💎 #LíneaBlanca #Tecnología', music: 'Cold as Ice - Remix' },
-    { id: 4, img: truckImg, user: 'electrofoxccs', likes: '15.6k', comments: '240', caption: 'Logística de primera para entregas seguras en toda Venezuela. 🚚💨 @electrofoxccs', music: 'On the Road - Electro' },
   ];
 
-  const igGridPosts = [
+  const gridPosts = [
     { id: 1, img: storefrontImg }, { id: 2, img: kitchenImg }, { id: 3, img: truckImg },
     { id: 4, img: ovenImg }, { id: 5, img: washerImg }, { id: 6, img: fridgeImg },
     { id: 7, img: hoodImg }, { id: 8, img: coffeeImg }, { id: 9, img: acImg },
@@ -34,51 +33,67 @@ const SocialView = ({ type }) => {
   if (isTikTok) {
     return (
       <div className={`${styles.tiktokContainer} fade-in`}>
-        <div className={styles.tkHeader}>
-          <span>Siguiendo</span>
-          <span className={styles.active}>Para ti</span>
+        <div className={styles.tkHeaderProfile}>
+          <ArrowLeft size={24} />
+          <span className={styles.tkUsername}>Electrofox CCS <CheckCircle size={14} fill="#20D5EC" color="black" /></span>
+          <Share2 size={24} />
         </div>
 
-        <div className={styles.tkFeed}>
-          {posts.map(post => (
-            <div key={post.id} className={styles.tkSlide}>
-               <img src={post.img} alt="video" className={styles.tkBg} />
-               <div className={styles.tkOverlay}>
-                 <div className={styles.tkInfo}>
-                   <span className={styles.tkUser}>@{post.user}</span>
-                   <p className={styles.tkCaption}>{post.caption}</p>
-                   <div className={styles.tkMusic}>
-                     <Music2 size={14} /> <span>{post.music}</span>
-                   </div>
-                 </div>
-                 
-                 <div className={styles.tkActions}>
-                   <div className={styles.tkAvatar}>
-                      <img src={logoImg} alt="av" />
-                      <div className={styles.plus}>+</div>
-                   </div>
-                   <div className={styles.tkAction}><Heart size={32} fill="white" stroke="none" /><span>{post.likes}</span></div>
-                   <div className={styles.tkAction}><MessageCircle size={32} fill="white" stroke="none" /><span>{post.comments}</span></div>
-                   <div className={styles.tkAction}><Bookmark size={32} fill="white" stroke="none" /><span>4k</span></div>
-                   <div className={styles.tkAction}><Share2 size={32} color="white" /><span>Compartir</span></div>
-                   <div className={styles.tkDisc}><img src={logoImg} alt="disc" /></div>
-                 </div>
-               </div>
+        <div className={styles.tkContentScroll}>
+          <div className={styles.tkProfileHeader}>
+            <div className={styles.tkAvatarWrapper}>
+               <img src={logoImg} alt="logo" className={styles.tkAvatarLarge} />
             </div>
-          ))}
+            <span className={styles.tkAtName}>@electrofoxccs</span>
+            
+            <div className={styles.tkStats}>
+               <div className={styles.tkStat}><strong>450</strong><span>Siguiendo</span></div>
+               <div className={styles.tkStat}><strong>1.2M</strong><span>Seguidores</span></div>
+               <div className={styles.tkStat}><strong>12.4M</strong><span>Me gusta</span></div>
+            </div>
+
+            <div className={styles.tkBio}>
+               <p>Líderes en Línea Blanca & Lujo en Vzla 💎🦊</p>
+               <p>📍 Las Mercedes, Caracas</p>
+               <a href="https://electrofoxccs.com">electrofoxccs.com</a>
+            </div>
+
+            <div className={styles.tkActionsProfile}>
+              <button className={styles.tkBtnFollow}>Seguir</button>
+              <button className={styles.tkBtnIcon}><MessageCircle size={20} /></button>
+              <button className={styles.tkBtnIcon}><User size={20} /></button>
+            </div>
+          </div>
+
+          <div className={styles.tkTabs}>
+            <div className={`${styles.tkTabItem} ${view === 'grid' ? styles.tkActiveTab : ''}`} onClick={() => setView('grid')}><Grid size={22} /></div>
+            <div className={styles.tkTabItem}><Lock size={20} /></div>
+            <div className={styles.tkTabItem}><Bookmark size={20} /></div>
+            <div className={styles.tkTabItem}><Heart size={20} /></div>
+          </div>
+
+          <div className={styles.tkGrid}>
+            {gridPosts.map(p => (
+              <div key={p.id} className={styles.tkGridItem}>
+                <img src={p.img} alt="post" />
+                <div className={styles.tkGridOverlay}><Play size={12} fill="white" /> 154k</div>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className={styles.tkFooter}>
-           <div className={styles.tkTab}><Play fill="white" size={24} /><span>Inicio</span></div>
-           <div className={styles.tkTab}><User size={24} /><span>Amigos</span></div>
+           <div className={styles.tkTabFooter} onClick={() => setView('feed')}><Play size={24} /><span>Inicio</span></div>
+           <div className={styles.tkTabFooter}><User size={24} /><span>Amigos</span></div>
            <div className={styles.tkPlus}><div className={styles.plusBox}>+</div></div>
-           <div className={styles.tkTab}><MessageSquare size={24} /><span>Bandeja</span></div>
-           <div className={styles.tkTab}><User size={24} /><span>Perfil</span></div>
+           <div className={styles.tkTabFooter}><MessageCircle size={24} /><span>Bandeja</span></div>
+           <div className={styles.tkTabFooter}><User size={24} color="#fe2c55" /><span>Perfil</span></div>
         </div>
       </div>
     );
   }
 
+  // Instagram remains as is but with fluid style
   return (
     <div className={`${styles.igContainer} fade-in`}>
       <div className={styles.igHeader}>
@@ -118,20 +133,30 @@ const SocialView = ({ type }) => {
 
         {view === 'grid' ? (
           <div className={styles.igGrid}>
-            {igGridPosts.map(p => (
-              <div key={p.id} className={styles.gridItem} onClick={() => setView('grid')}><img src={p.img} alt="p" /></div>
+            {gridPosts.map(p => (
+              <div key={p.id} className={styles.gridItem}><img src={p.img} alt="p" /></div>
             ))}
           </div>
         ) : (
           <div className={styles.igFeed}>
-             {/* Feed implementation remains similar but scaled */}
+             {posts.map(p => (
+               <div key={p.id} style={{ marginBottom: '20px' }}>
+                 <div style={{ padding: '10px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <img src={logoImg} alt="av" style={{ width: '32px', height: '32px', borderRadius: '50%' }} />
+                    <span style={{ fontWeight: '700', fontSize: '0.85rem' }}>{p.user}</span>
+                 </div>
+                 <img src={p.img} alt="post" style={{ width: '100%', aspectRatio: '1', objectFit: 'cover' }} />
+                 <div style={{ padding: '10px' }}>
+                    <div style={{ display: 'flex', gap: '15px', marginBottom: '8px' }}><Heart size={24} /><MessageCircle size={24} /><Send size={24} /></div>
+                    <p style={{ fontSize: '0.85rem' }}><strong>{p.user}</strong> {p.caption}</p>
+                 </div>
+               </div>
+             ))}
           </div>
         )}
       </div>
     </div>
   );
 };
-
-const MessageSquare = ({ size }) => <MessageCircle size={size} />;
 
 export default SocialView;

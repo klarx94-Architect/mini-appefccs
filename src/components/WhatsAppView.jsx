@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Camera, Search, MoreVertical, MessageSquare, Phone, Video, Search as SearchIcon, ArrowLeft, ShoppingBag } from 'lucide-react';
+import { Camera, Search, MoreVertical, MessageSquare, Phone, Video, Search as SearchIcon, ArrowLeft, ShoppingBag, Send, User } from 'lucide-react';
 import styles from './WhatsAppView.module.css';
 import logoImg from '../assets/logo_ef.png';
 

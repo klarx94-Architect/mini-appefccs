@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import DeviceFrame from './components/DeviceFrame';
 import TopNav from './components/TopNav';
 import WhatsAppView from './components/WhatsAppView';
@@ -9,35 +9,14 @@ import './styles/globals.css';
 function App() {
   const [activeTab, setActiveTab] = useState('whatsapp');
   const [isMobile, setIsMobile] = useState(false);
-  const [scale, setScale] = useState(1);
-  const containerRef = useRef(null);
 
   useEffect(() => {
-    const handleResize = () => {
-      const mobile = window.innerWidth <= 768 || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-      setIsMobile(mobile);
-
-      if (containerRef.current) {
-        const parent = containerRef.current.parentElement;
-        const parentWidth = parent.clientWidth;
-        const parentHeight = parent.clientHeight;
-        
-        // Virtual Viewport: 375 x 812 (iPhone Standard)
-        const virtualWidth = 375;
-        const virtualHeight = 812;
-
-        const scaleX = parentWidth / virtualWidth;
-        const scaleY = parentHeight / virtualHeight;
-        
-        // Use the smaller scale to fit perfectly
-        const newScale = Math.min(scaleX, scaleY, 1.2); // Limit max scale for desktop
-        setScale(newScale);
-      }
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768 || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
     };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   const renderContent = () => {
@@ -53,14 +32,11 @@ function App() {
   return (
     <div className="app-container">
       <DeviceFrame isMobileView={isMobile}>
-        <div className="scaling-wrapper" style={{ transform: `scale(${isMobile ? 1 : scale})` }}>
-          <div className="virtual-viewport" ref={containerRef}>
-            <div className="main-layout">
-              <TopNav activeTab={activeTab} onTabChange={setActiveTab} isMobile={isMobile} />
-              <div className="app-body">
-                {renderContent()}
-              </div>
-            </div>
+        {/* FLUID LAYOUT: No fixed viewport or scales. Fills available space. */}
+        <div className="main-layout">
+          <TopNav activeTab={activeTab} onTabChange={setActiveTab} isMobile={isMobile} />
+          <div className="app-body">
+            {renderContent()}
           </div>
         </div>
       </DeviceFrame>
