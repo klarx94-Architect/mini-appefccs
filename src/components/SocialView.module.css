@@ -1,13 +1,185 @@
-/* TikTok Refinements */
+/* Instagram Profile Redesign 1:1 */
+.igContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #fff;
+  color: #000;
+}
+
+.igHeader {
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0.5px solid #dbdbdb;
+  height: 44px;
+}
+
+.igUsername {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.igHeaderIcons { display: flex; gap: 15px; }
+
+.igContentScroll {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.igProfileInfo {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.igAvatarLarge {
+  width: 77px;
+  height: 77px;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+}
+
+.igAvatarLarge .inner {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border-radius: 50%;
+  padding: 2px;
+}
+
+.igAvatarLarge img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: contain;
+}
+
+.igStats {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.stat { display: flex; flex-direction: column; }
+.stat strong { font-size: 1rem; color: #000; }
+.stat span { font-size: 0.8rem; color: #262626; }
+
+.igBio {
+  padding: 0 16px 12px;
+  font-size: 0.85rem;
+}
+
+.fullName { font-weight: 700; display: block; margin-bottom: 2px; }
+.category { color: #8e8e8e; display: block; margin-bottom: 4px; }
+.igBio p { white-space: pre-wrap; margin-bottom: 4px; }
+.igBio a { color: #00376b; text-decoration: none; font-weight: 500; display: block; }
+
+.igActionBtns {
+  padding: 0 16px 16px;
+  display: flex;
+  gap: 6px;
+}
+
+.igBtn {
+  flex: 1;
+  background: #efefef;
+  border: none;
+  border-radius: 8px;
+  height: 32px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #000;
+}
+
+.igBtnMain {
+  flex: 1;
+  background: #0095f6;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  height: 32px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.igTabs {
+  display: flex;
+  border-top: 0.5px solid #dbdbdb;
+  height: 44px;
+}
+
+.igTab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8e8e8e;
+}
+
+.activeTab {
+  color: #000;
+  border-bottom: 1px solid #000;
+}
+
+.igGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+}
+
+.gridItem {
+  aspect-ratio: 1;
+  background: #eee;
+}
+
+.gridItem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* TikTok Redesign 1:1 */
 .tiktokContainer {
   height: 100%;
   background: #000;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.tkHeader {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  right: 0;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  font-weight: 700;
+  font-size: 1rem;
+  z-index: 100;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+}
+
+.tkHeader span { opacity: 0.6; cursor: pointer; }
+.tkHeader span.active { opacity: 1; position: relative; }
+.tkHeader span.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 20%;
+  right: 20%;
+  height: 2px;
+  background: #fff;
 }
 
 .tkFeed {
-  flex: 1;
+  height: 100%;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
 }
@@ -19,43 +191,100 @@
   scroll-snap-align: start;
 }
 
-.tkBg { width: 100%; height: 100%; object-fit: cover; }
+.tkBg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 .tkOverlay {
   position: absolute;
-  bottom: 0; left: 0; right: 0;
-  padding: 20px 15px 90px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 12px 100px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  background: linear-gradient(transparent, rgba(0,0,0,0.7));
 }
 
-.tkHeader {
-   position: absolute;
-   top: 15px; left: 0; right: 0;
-   display: flex;
-   justify-content: center;
-   gap: 15px;
-   font-weight: 700;
-   color: #fff;
-   z-index: 10;
+.tkInfo {
+  max-width: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
+
+.tkUser { font-weight: 700; font-size: 1.05rem; }
+.tkCaption { font-size: 0.95rem; line-height: 1.4; }
+.tkMusic { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; }
+
+.tkActions {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.tkAvatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid #fff;
+  position: relative;
+  background: #fff;
+}
+
+.tkAvatar img { width: 100%; height: 100%; object-fit: contain; }
+
+.tkAction { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.tkAction span { font-size: 0.75rem; font-weight: 600; }
 
 .tkFooter {
   position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 60px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
   background: #000;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border-top: 0.5px solid #333;
+  padding-bottom: 20px;
+  border-top: 0.5px solid #222;
+  z-index: 1000;
 }
 
-.tkTab { display: flex; flex-direction: column; align-items: center; gap: 2px; color: #fff; font-size: 0.65rem; }
+.tkTab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-size: 0.65rem;
+  opacity: 0.6;
+}
 
-/* Instagram Refinements */
-.igHeader { padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 0.5px solid #eee; }
-.igContentScroll { flex: 1; overflow-y: auto; background: #fff; }
-.igGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; }
+.tkPlus {
+  width: 45px;
+  height: 28px;
+  background: linear-gradient(to right, #00f2ea 0%, #00f2ea 15%, #ff0050 85%, #ff0050 100%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+}
+
+.plusBox {
+  width: 32px;
+  height: 100%;
+  background: #fff;
+  border-radius: 6px;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 1.2rem;
+}

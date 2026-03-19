@@ -20,6 +20,26 @@ body, html, #root {
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #fdfdfd;
+}
+
+/* Scaling System */
+.scaling-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center center;
+}
+
+.virtual-viewport {
+  width: 375px;
+  height: 812px;
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 50px rgba(0,0,0,0.1);
 }
 
 .main-layout {
@@ -42,4 +62,13 @@ body, html, #root {
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+/* Hide scrollbars but keep functionality */
+::-webkit-scrollbar {
+  display: none;
+}
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
