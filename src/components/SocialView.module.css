@@ -1,146 +1,61 @@
-/* Instagram Styles */
-.igContainer {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  background: #fff;
-  color: #000;
-  overflow-y: auto;
-  padding-bottom: 20px;
-}
-
-.igHeader {
-  padding: 50px 15px 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  background: #fff;
-  z-index: 100;
-}
-
-.igUsername { font-size: 1.1rem; font-weight: 800; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto; }
-.igHeaderIcons { display: flex; gap: 20px; }
-
-.igProfileInfo { padding: 10px 15px; display: flex; align-items: center; gap: 30px; }
-.igAvatarLarge { width: 80px; height: 80px; border-radius: 50%; border: 1px solid #efefef; padding: 2px; overflow: hidden; }
-.igAvatarLarge img { width: 100%; height: 100%; border-radius: 50%; object-fit: contain; }
-
-.igStats { flex: 1; display: flex; justify-content: space-around; text-align: center; }
-.stat { display: flex; flex-direction: column; font-size: 0.85rem; }
-.stat strong { font-size: 1rem; }
-.stat span { color: #8e8e8e; font-size: 0.75rem; }
-
-.igBio { padding: 0 15px; display: flex; flex-direction: column; font-size: 0.85rem; line-height: 1.3; }
-.fullName { font-weight: 800; }
-.category { color: #8e8e8e; }
-.igBio a { color: #00376b; text-decoration: none; font-weight: 600; }
-
-.igActionBtns { padding: 15px; display: flex; gap: 8px; }
-.igBtnMain { flex: 1; background: #0095f6; color: #fff; border: none; border-radius: 8px; padding: 8px; font-weight: 700; font-size: 0.85rem; }
-.igBtn { flex: 1; background: #efefef; color: #000; border: none; border-radius: 8px; padding: 8px; font-weight: 700; font-size: 0.85rem; }
-
-.igTabs { display: flex; border-top: 1px solid #efefef; }
-.igTab { flex: 1; display: flex; justify-content: center; padding: 12px; color: #8e8e8e; cursor: pointer; }
-.activeTab { color: #000; border-top: 1px solid #000; margin-top: -1px; }
-
-.igGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
-.gridItem { aspect-ratio: 1; overflow: hidden; }
-.gridItem img { width: 100%; height: 100%; object-fit: cover; }
-
-.igFeed { background: #fff; }
-.post { margin-bottom: 25px; }
-.postHeader { padding: 10px; display: flex; align-items: center; gap: 10px; }
-.miniAvatar { width: 32px; height: 32px; border-radius: 50%; overflow: hidden; border: 1px solid #efefef; }
-.miniAvatar img { width: 100%; height: 100%; object-fit: contain; }
-.postUser { font-weight: 700; font-size: 0.85rem; flex: 1; }
-.postMedia { width: 100%; aspect-ratio: 1; background: #fafafa; }
-.postMedia img { width: 100%; height: 100%; object-fit: cover; }
-
-.postActions { padding: 10px 12px; display: flex; justify-content: space-between; }
-.actionsLeft { display: flex; gap: 15px; }
-.postBody { padding: 0 12px; font-size: 0.85rem; }
-.timeTag { color: #8e8e8e; font-size: 0.7rem; margin-top: 5px; display: block; }
-
-/* TikTok Styles */
+/* TikTok Refinements */
 .tiktokContainer {
   height: 100%;
   background: #000;
-  color: #fff;
   display: flex;
   flex-direction: column;
+}
+
+.tkFeed {
+  flex: 1;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+.tkSlide {
+  height: 100%;
+  width: 100%;
   position: relative;
+  scroll-snap-align: start;
 }
 
-.tkHeader {
-  position: absolute;
-  top: 50px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  font-weight: 700;
-  font-size: 1.1rem;
-  z-index: 100;
-  color: rgba(255,255,255,0.6);
-}
-
-.tkHeader span.active { color: #fff; border-bottom: 2px solid #fff; }
-.tkSearch { position: absolute; right: 20px; }
-
-.tkFeed { flex: 1; overflow: hidden; position: relative; }
-.tkVideo { height: 100%; position: relative; }
-.tkBg { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7); }
+.tkBg { width: 100%; height: 100%; object-fit: cover; }
 
 .tkOverlay {
   position: absolute;
-  bottom: 0px;
-  left: 0;
-  right: 0;
-  padding: 80px 15px 120px; /* Padding for nav menu */
+  bottom: 0; left: 0; right: 0;
+  padding: 20px 15px 90px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  background: linear-gradient(transparent, rgba(0,0,0,0.6));
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
 }
 
-.tkInfo { flex: 1; display: flex; flex-direction: column; gap: 8px; max-width: 80%; }
-.tkUser { font-weight: 800; font-size: 1rem; }
-.tkCaption { font-size: 0.85rem; line-height: 1.3; }
-.tkMusic { display: flex; align-items: center; gap: 8px; font-size: 0.75rem; }
-
-.tkActions { display: flex; flex-direction: column; gap: 20px; align-items: center; }
-
-.tkAvatar { width: 48px; height: 48px; border-radius: 50%; border: 2px solid #fff; background: #fff; position: relative; }
-.tkAvatar img { width: 100%; height: 100%; object-fit: contain; }
-.plus { position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); background: #fe2c55; color: #fff; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 900; }
-
-.tkAction { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-.tkAction span { font-size: 0.75rem; font-weight: 700; }
-
-.tkDisc { width: 48px; height: 48px; border-radius: 50%; background: #333; animation: rotate 3s linear infinite; padding: 10px; }
-.tkDisc img { width: 100%; height: 100%; object-fit: contain; opacity: 0.5; }
-
-@keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.tkHeader {
+   position: absolute;
+   top: 15px; left: 0; right: 0;
+   display: flex;
+   justify-content: center;
+   gap: 15px;
+   font-weight: 700;
+   color: #fff;
+   z-index: 10;
+}
 
 .tkFooter {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 85px;
+  bottom: 0; left: 0; right: 0;
+  height: 60px;
   background: #000;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding-bottom: 20px;
-  border-top: 0.5px solid rgba(255,255,255,0.2);
+  border-top: 0.5px solid #333;
 }
 
-.tkTab { display: flex; flex-direction: column; align-items: center; color: rgba(255,255,255,0.6); font-size: 0.65rem; gap: 4px; }
-.tkPlus { width: 45px; height: 30px; position: relative; }
-.plusBox { width: 100%; height: 100%; background: #fff; border-radius: 8px; color: #000; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 20px; position: relative; }
-.plusBox::before { content: ''; position: absolute; left: -4px; width: 100%; height: 100%; background: #69C9D0; border-radius: 8px; z-index: -1; }
-.plusBox::after { content: ''; position: absolute; right: -4px; width: 100%; height: 100%; background: #EE1D52; border-radius: 8px; z-index: -1; }
+.tkTab { display: flex; flex-direction: column; align-items: center; gap: 2px; color: #fff; font-size: 0.65rem; }
+
+/* Instagram Refinements */
+.igHeader { padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 0.5px solid #eee; }
+.igContentScroll { flex: 1; overflow-y: auto; background: #fff; }
+.igGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; }

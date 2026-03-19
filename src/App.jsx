@@ -12,7 +12,7 @@ function App() {
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
+      setIsMobile(window.innerWidth <= 768 || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
     };
     checkMobile();
     window.addEventListener('resize', checkMobile);
@@ -21,24 +21,26 @@ function App() {
 
   const renderContent = () => {
     switch (activeTab) {
-      case 'whatsapp':
-        return <WhatsAppView />;
-      case 'instagram':
-        return <SocialView type="instagram" />;
-      case 'tiktok':
-        return <SocialView type="tiktok" />;
-      case 'google':
-        return <GoogleView />;
-      default:
-        return <WhatsAppView />;
+      case 'whatsapp': return <WhatsAppView />;
+      case 'instagram': return <SocialView type="instagram" />;
+      case 'tiktok': return <SocialView type="tiktok" />;
+      case 'google': return <GoogleView />;
+      default: return <WhatsAppView />;
     }
   };
 
   return (
-    <DeviceFrame isMobileView={isMobile}>
-      <TopNav activeTab={activeTab} onTabChange={setActiveTab} isMobile={isMobile} />
-      {renderContent()}
-    </DeviceFrame>
+    <div className="app-container">
+      <DeviceFrame isMobileView={isMobile}>
+        {/* Simplified Layout: TopNav is at the top, content follows */}
+        <div className="main-layout">
+          <TopNav activeTab={activeTab} onTabChange={setActiveTab} isMobile={isMobile} />
+          <div className="app-body">
+            {renderContent()}
+          </div>
+        </div>
+      </DeviceFrame>
+    </div>
   );
 }
 
